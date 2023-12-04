@@ -1,0 +1,97 @@
+{
+	"folders": [
+		{
+			"name": "Day-11",
+			"path": "Day-11"
+		},
+		{
+			"name": "Day-10",
+			"path": "Day-10"
+		},
+		{
+			"name": "Day-9",
+			"path": "Day-9"
+		},
+		{
+			"name": "Day-8",
+			"path": "Day-8"
+		},
+		{
+			"name": "Day-7",
+			"path": "Day-7"
+		},
+		{
+			"name": "Day-6",
+			"path": "Day-6"
+		},
+		{
+			"name": "Day-5",
+			"path": "Day-5"
+		},
+		{
+			"name": "Day-4",
+			"path": "Day-4"
+		},
+		{
+			"name": "Day-3",
+			"path": "Day-3"
+		},
+		{
+			"name": "Day-2",
+			"path": "Day-2"
+		},
+		{
+			"path": "Day-1"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"array": "cpp",
+			"atomic": "cpp",
+			"bit": "cpp",
+			"*.tcc": "cpp",
+			"cctype": "cpp",
+			"clocale": "cpp",
+			"cmath": "cpp",
+			"compare": "cpp",
+			"concepts": "cpp",
+			"cstdarg": "cpp",
+			"cstddef": "cpp",
+			"cstdint": "cpp",
+			"cstdio": "cpp",
+			"cstdlib": "cpp",
+			"cwchar": "cpp",
+			"cwctype": "cpp",
+			"deque": "cpp",
+			"string": "cpp",
+			"unordered_map": "cpp",
+			"vector": "cpp",
+			"exception": "cpp",
+			"algorithm": "cpp",
+			"functional": "cpp",
+			"iterator": "cpp",
+			"memory": "cpp",
+			"memory_resource": "cpp",
+			"numeric": "cpp",
+			"random": "cpp",
+			"string_view": "cpp",
+			"system_error": "cpp",
+			"tuple": "cpp",
+			"type_traits": "cpp",
+			"utility": "cpp",
+			"fstream": "cpp",
+			"initializer_list": "cpp",
+			"iosfwd": "cpp",
+			"iostream": "cpp",
+			"istream": "cpp",
+			"limits": "cpp",
+			"new": "cpp",
+			"numbers": "cpp",
+			"ostream": "cpp",
+			"stdexcept": "cpp",
+			"streambuf": "cpp",
+			"cinttypes": "cpp",
+			"typeinfo": "cpp"
+		}
+	}
+}
