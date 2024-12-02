@@ -4,6 +4,15 @@ All my [Advent of Code](https://adventofcode.com/) Solutions from over the years
 
 # Overview
 
+## 2024 [Python]
+
+```
+                 111111111222222
+        123456789012345789012345
+Star 1: **----------------------
+Star 2: **----------------------
+```
+
 ## 2023 [Python]
 
 ```

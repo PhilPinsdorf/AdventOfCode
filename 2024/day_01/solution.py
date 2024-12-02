@@ -3,7 +3,7 @@ second_numbers = []
 count_1 = 0
 count_2 = 0
 
-f = open("input.txt", "r")
+f = open("test.txt", "r")
 for line in f:
   line = line.split()
   first_numbers.append(int(line[0]))
