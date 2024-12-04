@@ -1,26 +1,21 @@
-count_1 = 0
-count_2 = 0
+count_1, count_2 = 0, 0
 f = open("input.txt", "r")
 input = list(map(str.strip, f.readlines()))
-possible = []
+candidates = []
+directions = [ (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1) ]
 
 for index_l, line in enumerate(input):
     for index_c, char in enumerate(line):
         if char == 'X':
-            possible.append(input[index_l][index_c:index_c+4]) # Right
-            if index_c + 3 < len(line) and index_l + 3 < len(input):
-                possible.append(''.join([input[index_l+i][index_c+i] for i in range(4)])) # Down Right
-            if index_l + 3 < len(input):
-                possible.append(''.join([input[index_l+i][index_c] for i in range(4)])) # Down
-            if index_c - 3 >= 0 and index_l + 3 < len(input):
-                possible.append(''.join([input[index_l+i][index_c-i] for i in range(4)])) # Down Left
-            possible.append(input[index_l][index_c-3:index_c+1][::-1]) # Left
-            if index_c - 3 >= 0 and index_l - 3 >= 0:
-                possible.append(''.join([input[index_l-i][index_c-i] for i in range(4)])) # Up Left
-            if index_l - 3 >= 0:
-                possible.append(''.join([input[index_l-i][index_c] for i in range(4)])) # Up
-            if index_c + 3 < len(line) and index_l - 3 >= 0:
-                possible.append(''.join([input[index_l-i][index_c+i] for i in range(4)])) # Up Right
+            for dir_row, dir_col in directions:
+                chars = []
+                for i in range(4):
+                    row, col = index_l + i * dir_row, index_c + i * dir_col
+                    if 0 <= row < len(input) and 0 <= col < len(input[row]): 
+                        chars.append(input[row][col])
+                    else:
+                        break
+                if len(chars) == 4: candidates.append(''.join(chars))
         
         if char == 'A':
             if index_c > 0 and index_l > 0 and index_c < len(line) - 1 and index_l < len(input) - 1:
@@ -32,5 +27,5 @@ for index_l, line in enumerate(input):
                 if candidate in [[['M', 'M'], ['S', 'S']], [['S', 'M'], ['S', 'M']], [['S', 'S'], ['M', 'M']], [['M', 'S'], ['M', 'S']]]:
                     count_2 += 1
         
-count_1 = possible.count('XMAS')
+count_1 = candidates.count('XMAS')
 print(count_1, count_2)
