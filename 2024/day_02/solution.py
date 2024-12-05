@@ -15,7 +15,7 @@ def check_level(numbers) -> bool:
     
     return True
 
-f = open("input.txt", "r")
+f = open("test.txt", "r")
 for line in f:
     numbers = list(map(int, line.split()))
     candidates = [numbers[:i] + numbers[i+1:] for i in range(len(numbers))]

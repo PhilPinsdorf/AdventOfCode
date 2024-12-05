@@ -4,7 +4,7 @@ count1 = 0
 count2 = 0
 enabled = True
 
-f = open("input.txt", "r")
+f = open("test.txt", "r")
 for line in f:
     matches = re.findall(r"mul\((\d{1,3}),(\d{1,3})\)|(do\(\))|(don't\(\))", line)
 

@@ -1,5 +1,5 @@
 count_1, count_2 = 0, 0
-f = open("input.txt", "r")
+f = open("test.txt", "r")
 input = list(map(str.strip, f.readlines()))
 candidates = []
 directions = [ (0, 1), (1, 1), (1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1) ]

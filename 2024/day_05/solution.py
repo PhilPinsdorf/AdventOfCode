@@ -2,7 +2,7 @@ from collections import defaultdict
 number_dict = defaultdict(list)
 count_1, count_2 = 0, 0
 
-f = open("input.txt", "r")
+f = open("test.txt", "r")
 for line in f:
     if line == '\n': break
     sequence = list(map(int, line.split('|')))
