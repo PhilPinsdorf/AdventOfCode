@@ -1,5 +1,5 @@
 sequences = []
-count_1, count_2, iter_count = 0, 0, 0
+count_1, count_2, counter = 0, 0, 0
 
 f = open("input.txt", "r")
 for line in f:
@@ -15,7 +15,6 @@ def find_solutions_recursive(current, sequence, position, solutions, combine):
     find_solutions_recursive(current * sequence[position], sequence, position + 1, solutions, combine)
     if combine: find_solutions_recursive(int(str(current) + str(sequence[position])), sequence, position + 1, solutions, combine)
 
-counter = 0
 for sequence in sequences: 
     solutions_1, solutions_2, found_1, found_2 = set(), set(), 0, 0
     find_solutions_recursive(sequence[1][0], sequence[1], 1, solutions_1, False)
