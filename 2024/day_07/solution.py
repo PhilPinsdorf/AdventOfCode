@@ -1,55 +1,72 @@
+import multiprocessing
+
 sequences = []
-count_1, count_2 = 0, 0
+count_1, count_2, iter_count = 0, 0, 0
 
 f = open("input.txt", "r")
 for line in f:
     parts = line.split(':')
     sequences.append((int(parts[0]), list(map(int, parts[1].split()))))
 
-def find_solutions_recursive(current, sequence, position, solutions):
+def find_solutions_recursive_1(current, sequence, position, solutions):
     if(position == len(sequence)):
         solutions.add(current)
         return
 
-    find_solutions_recursive(current + sequence[position], sequence, position + 1, solutions)
-    find_solutions_recursive(current * sequence[position], sequence, position + 1, solutions)
+    find_solutions_recursive_1(current + sequence[position], sequence, position + 1, solutions)
+    find_solutions_recursive_1(current * sequence[position], sequence, position + 1, solutions)
 
-def build_new_sequences(new_sequence, position, new_sequences):
-    if(position >= len(new_sequence) - 1):
-        new_sequences.add(tuple(new_sequence))
+def find_solutions_recursive_2(current, sequence, position, solutions):
+    if(position == len(sequence)):
+        solutions.add(current)
         return
 
-    # skip one index
-    build_new_sequences(new_sequence.copy(), position + 1, new_sequences)
-    
-    # join two indexes
-    adjusted_sequence = new_sequence.copy()
-    adjusted_sequence[position] = int(str(adjusted_sequence[position]) + str(adjusted_sequence[position + 1]))
-    del adjusted_sequence[position + 1]
-    build_new_sequences(adjusted_sequence, position + 1, new_sequences)
-    build_new_sequences(adjusted_sequence, 0, new_sequences)
+    find_solutions_recursive_2(current + ' + ' + str(sequence[position]), sequence, position + 1, solutions)
+    find_solutions_recursive_2(current + ' * ' + str(sequence[position]), sequence, position + 1, solutions)
+    find_solutions_recursive_2(current + ' | ' + str(sequence[position]), sequence, position + 1, solutions)
 
-counter, lol = 0, 0
-for sequence in sequences:
+def interpret_string(string):
+    operations = string.split()
+    
+    while(len(operations) > 1):
+        match operations[1]:
+            case '+':
+                operations[0] = str(int(operations[0]) + int(operations[2]))
+            case '*':
+                operations[0] = str(int(operations[0]) * int(operations[2]))
+            case '|':
+                operations[0] = operations[0] + operations[2]
+        
+        del operations[1]
+        del operations[1]
+        
+    return int(operations[0])
+
+def calculate_result(args):
+    sequence, index = args  
     solutions_1, solutions_2 = set(), set()
-    find_solutions_recursive(sequence[1][0], sequence[1], 1, solutions_1)
-    
-    new_sequences = set()
-    build_new_sequences(sequence[1].copy(), 0, new_sequences)
-    new_sequences = [list(elem) for elem in new_sequences]
-    
-    for new_sequence in new_sequences:
-        find_solutions_recursive(new_sequence[0], new_sequence, 1, solutions_2)
-        # print(sequence[0], solutions_2)
-        if sequence[0] in solutions_2:
-            count_2 += sequence[0]
-            counter += 1
-            break;
+    found_1, found_2 = 0, 0
+    find_solutions_recursive_1(sequence[1][0], sequence[1], 1, solutions_1)
+    find_solutions_recursive_2(str(sequence[1][0]), sequence[1], 1, solutions_2)
     
     if sequence[0] in solutions_1:
-        count_1 += sequence[0]
+        found_1 = sequence[0]
     
-    lol += 1
-    print(lol, 850)
+    for solution in solutions_2:
+        result = interpret_string(solution)
+        
+        if result == sequence[0]:
+            found_2 = sequence[0]
+            print(index)
+            return (found_1, found_2)
+    
+    return (found_1, found_2)
+    
+with multiprocessing.Pool() as pool:
+    args = [(sequence, index) for index, sequence in enumerate(sequences)]
+    results = pool.map(calculate_result, args)
+    for found_1, found_2 in results:
+        count_1 += found_1
+        count_2 += found_2
 
-print(count_1, count_2, counter)
+print(count_1, count_2)
