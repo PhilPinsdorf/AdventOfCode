@@ -2,7 +2,7 @@ grid, visited, possible_positions, found_positions = [], set(), set(), set()
 count_1, count_2, pos_y, pos_x, start_y, start_x, rotation = 0, 0, 0, 0, 0, 0, 0
 directions = [(-1, 0), (0, 1), (1, 0), (0, -1)] 
 
-f = open("input.txt", "r")
+f = open("test.txt", "r")
 for index, line in enumerate(f):
     grid.append(list(line.strip()))
     if '^' in line:

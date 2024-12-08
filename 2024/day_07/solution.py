@@ -1,7 +1,7 @@
 sequences = []
 count_1, count_2, counter = 0, 0, 0
 
-f = open("input.txt", "r")
+f = open("test.txt", "r")
 for line in f:
     parts = line.split(':')
     sequences.append((int(parts[0]), list(map(int, parts[1].split()))))
